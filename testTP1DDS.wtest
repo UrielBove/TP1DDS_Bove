@@ -1,0 +1,27 @@
+import tp1DDS.*
+
+describe "Tests de Inscripciones" {
+    const fisica1 = new Materia(nombre = "Fisica1", correlativas = [])
+    const algoritmos = new Materia(nombre = "Algoritmos", correlativas = [])
+    const discreta = new Materia(nombre = "Discreta",correlativas = [])
+    const paradigmas = new Materia(nombre = "Paradigmas",correlativas = [algoritmos, discreta])
+    const sintaxis = new Materia(nombre = "Sintaxis",correlativas = [algoritmos, discreta])
+    const fisica2 = new Materia(nombre = "Fisica2", correlativas = [fisica1])
+    const disenio = new Materia(nombre = "Disenio", correlativas = [paradigmas])
+  test "El alumno tiene todas las correlativas aprobadas, por lo tanto la inscripcion esta aprobada"{
+    const juan = new Alumno(nombre = "Juan",apellido = "Perez" ,materiasAprobadas = [algoritmos, discreta, fisica1, paradigmas, sintaxis])
+
+    const inscripcion1 = new Inscripcion(materiasDeseadas = [disenio], alumno = juan)
+
+    assert.that(inscripcion1.aprobada())
+  }
+
+  test "Inscripcion no aprobada ya que el alumno no tiene todas las correlativas aprobadas"{
+    const pedro = new Alumno(nombre = "Pedro",apellido = "Rodriguez",materiasAprobadas = [algoritmos, fisica1])
+
+    const inscripcion2 = new Inscripcion(materiasDeseadas = [sintaxis, fisica2], alumno = pedro)
+
+    assert.notThat(inscripcion2.aprobada())
+  }
+
+}
