@@ -1,8 +1,8 @@
 
 
-## example
+## TP1
 
-Diagrama De Clases
+Diagrama De Clases (Star UML)
 
 ![alt text](image.png)
 
